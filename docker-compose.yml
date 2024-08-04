@@ -7,10 +7,13 @@ services:
       dockerfile: Dockerfile1
     ports:
       - "8001:8001"
+
   web-research:
     build:
       context: .
       dockerfile: Dockerfile2
+    depends_on:
+      - web-about
 
   web-ct519:
     build:
@@ -18,26 +21,35 @@ services:
       dockerfile: Dockerfile3
     ports:
       - "8003:8003"
+    depends_on:
+      - web-research
+
   web-landing-1:
     build:
       context: .
       dockerfile: Dockerfile4
     ports:
       - "8000:8000"
+    depends_on:
+      - web-ct519
+
   web-landing-2:
     build:
       context: .
       dockerfile: Dockerfile5
     ports:
       - "7999:7999"
+    depends_on:
+      - web-landing-1
+
   web-landing-3:
     build:
       context: .
       dockerfile: Dockerfile6
     ports:
       - "7998:7998"
-
-
+    depends_on:
+      - web-landing-2
   nginx:
     image: nginx:latest
     ports:
