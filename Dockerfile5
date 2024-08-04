@@ -3,14 +3,14 @@ FROM golang:alpine
 
 WORKDIR /app
 
-COPY landing-page1/go.mod ./
+COPY landing-page2/go.mod ./
 RUN go mod download
 
-COPY landing-page1/ .
+COPY landing-page2/ .
 
 RUN go build -o main .
 
 # COPY server1/index.html ./
 
-EXPOSE 8000
+EXPOSE 7999
 CMD ["./main"]

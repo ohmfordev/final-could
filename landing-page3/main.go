@@ -10,11 +10,11 @@ func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "index.html")
 	})
-	// fs := http.FileServer(http.Dir("static3"))
-	// http.Handle("/static3/", http.StripPrefix("/static3/", fs))
+	// fs := http.FileServer(http.Dir("static1"))
+	// http.Handle("/static1/", http.StripPrefix("/static1/", fs))
 
-	fmt.Println("Starting server at port 8003")
-	if err := http.ListenAndServe(":8003", nil); err != nil {
+	fmt.Println("Starting server at port 7998")
+	if err := http.ListenAndServe(":7998", nil); err != nil {
 		fmt.Println(err)
 	}
 }
