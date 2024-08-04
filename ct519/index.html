@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker Overview</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white flex items-center justify-center min-h-screen">
+    <div class="max-w-4xl w-full bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg shadow-lg rounded-xl p-8 m-4">
+        <div class="flex flex-col items-center justify-center">
+            <h1 class="text-4xl font-bold mb-4 float-animation">Introduction to Docker</h1>
+            <div class="space-y-4 mb-8">
+                <p class="text-xl"><span class="font-bold">Docker</span> is a platform used to develop, ship, and run applications inside lightweight, portable containers. Containers package up the application code along with its dependencies, so it can run consistently across different environments.</p>
+                
+                <p class="text-xl"><span class="font-bold">Why Use Docker?</span> Docker simplifies the process of managing and deploying applications, allowing for greater consistency and efficiency. It isolates applications from each other and the underlying system, ensuring that they run the same way regardless of where they are deployed.</p>
+                
+                <p class="text-xl"><span class="font-bold">Key Concepts:</span></p>
+                <ul class="list-disc pl-5 text-xl">
+                    <li><strong>Containers:</strong> Encapsulate an application and its dependencies into a single, portable unit.</li>
+                    <li><strong>Images:</strong> Read-only templates used to create containers. They include everything needed to run an application.</li>
+                    <li><strong>Dockerfile:</strong> A text file with instructions to build a Docker image. It defines the base image, adds application code, and sets up the environment.</li>
+                    <li><strong>Docker Compose:</strong> A tool for defining and running multi-container Docker applications using a YAML file. It simplifies the process of running multiple containers with a single command.</li>
+                </ul>
+                
+                <p class="text-xl"><span class="font-bold">Getting Started with Docker:</span> To start using Docker, you need to install Docker Engine on your system. Once installed, you can create Dockerfiles to define your application's environment, build Docker images, and run containers using Docker commands.</p>
+            </div>
+            <a href="/" class="text-blue-300 hover:text-blue-400">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

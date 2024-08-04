@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  web-about:
+    build:
+      context: .
+      dockerfile: Dockerfile1
+    ports:
+      - "8001:8001"
+  web-research:
+    build:
+      context: .
+      dockerfile: Dockerfile2
+
+  web-ct519:
+    build:
+      context: .
+      dockerfile: Dockerfile3
+    ports:
+      - "8003:8003"
+  web-landing:
+    build:
+      context: .
+      dockerfile: Dockerfile4
+    ports:
+      - "8000:8000"
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "3005:80"
+      # - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      # - ./ssl:/etc/ssl
+    depends_on:
+      - web-about
+      - web-research
+      - web-ct519
+      - web-landing

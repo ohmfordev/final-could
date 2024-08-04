@@ -1,0 +1,81 @@
+version: '3.8'
+services:
+  server1:
+    build:
+      context: .
+      dockerfile: Dockerfile1
+    image: server1
+    ports:
+      - "8000:8000"
+  server2:
+    image: golang-1.21
+    ports:
+      - "80:8001"
+    volumes:
+      - ./server2/index.html:/app/index.html
+
+      
+version: '3.8'
+
+
+
+services:
+  backend4:
+    build:
+      context: .
+      dockerfile: Dockerfile3
+    ports:
+      - "8000:8080"
+
+
+  backend1:
+    build:
+      context: .
+      dockerfile: Dockerfile1
+    ports:
+      - "8081:8080"
+
+  backend2:
+    build:
+      context: .
+      dockerfile: Dockerfile1
+    ports:
+      - "8082:8080"
+
+
+  backend3:
+    build:
+      context: .
+      dockerfile: Dockerfile2
+    ports:
+      - "8083:8080"
+
+  backend10:
+    build:
+      context: .
+      dockerfile: Dockerfile4
+    ports:
+      - "8500:8080"
+
+  backend5:
+    build:
+      context: .
+      dockerfile: Dockerfile4
+    ports:
+      - "8005:8080"
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./ssl:/etc/ssl
+    depends_on:
+      - backend1
+      - backend2
+      - backend3
+      - backend4
+      # - backend10
+      # - backend5

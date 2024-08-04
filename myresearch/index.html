@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Website</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white flex items-center justify-center min-h-screen">
+    <div class="max-w-4xl w-full bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg shadow-lg rounded-xl p-8 m-4">
+        <div class="flex flex-col md:flex-row items-center justify-between">
+            <div class="md:w-1/2">
+                <h1 class="text-4xl font-bold mb-4 float-animation">Welcome to My Research</h1>
+                <!-- <div class="space-y-2">
+                    <p class="text-xl"><span class="font-bold">Name:</span> Sittiporn</p>
+                    <p class="text-xl"><span class="font-bold">Surname:</span> Emprakhon</p>
+                    <p class="text-xl"><span class="font-bold">Student ID:</span> 66130521</p>
+                </div> -->
+            </div>
+            
+        </div>
+        <div class="">
+            <img src="/static2/research.png" alt="Profile Picture" class="w-500 h-500">
+        </div>
+        <div class="mt-12">
+            <h2 class="text-3xl font-semibold mb-4">Application of Security Key in Authentication According to OAuth2 Standards</h2>
+            <p class="text-lg leading-relaxed">
+                Introduction
+The Importance of Authentication with Security Keys
+In the digital age, where data security is paramount, authentication for accessing online systems and services has become one of the most critical issues in cybersecurity. While passwords have long been the standard method of authentication, they have limitations in terms of security and convenience. This has led to the increasing adoption of authentication through Security Keys.
+FIDO2 and WebAuthn Standards
+To support secure and convenient authentication, the FIDO2 and WebAuthn standards have been developed as widely accepted technologies. FIDO2 consists of two main components: WebAuthn (Web Authentication) and CTAP (Client-to-Authenticator Protocol). These components work together to ensure that authentication via Security Keys is both secure and standardized.
+WebAuthn is an API that allows web applications to utilize passwordless authentication. It can work with devices supporting FIDO2, such as Security Keys or biometric devices. This technology helps protect against phishing attacks and enhances the security of online system access.
+Study Objectives
+This report aims to explore various methods and approaches for using Security Keys for login on web platforms and mobile applications. By comparing different methods from relevant research, it will analyze the advantages and disadvantages, as well as the effectiveness in preventing attacks and user convenience. This study will provide a better understanding of the application of Security Key technology and offer recommendations for developing and implementing more secure and efficient systems.
+                <!-- Add your article content here -->
+            </p>
+        </div>
+        <div class="mt-4">
+            <a href="/" onclick="javascript:window.location.port='8001'; return false;">About</a>
+            <a href="/" onclick="javascript:window.location.port='8002'; return false;">My Research</a>
+            <a href="/" onclick="javascript:window.location.port='8003'; return false;">Summary CT519</a>
+        </div>
+    </div>
+</body>
+</html>

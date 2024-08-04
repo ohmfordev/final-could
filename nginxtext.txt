@@ -1,0 +1,113 @@
+events { }
+
+http {
+
+    # #Round Robin  Service เดียวกันแต่รันคนละ PORT
+    upstream same_service {
+        server backend1:8080;
+        server backend2:8080;
+        # เพิ่ม server ต่าง ๆ ตามที่ต้องการ
+    }
+
+
+    # #Round Robin คนละ Service และรันคนละ PORT
+     upstream multi_service {
+        server backend1:8080;
+        server backend3:8080;
+        server backend4:8080;
+    }
+    server {
+        # listen 80;
+        listen 80;
+         # Load Balance  แบบService เดียวกัน 
+    # listen 443 ssl;
+    # server_name ohm.signalschool.co;
+    # ระบุไฟล์ใบรับรอง SSL และคีย์
+    # ssl_certificate  /etc/ssl/public.pem;
+    # ssl_certificate_key  /etc/ssl/private.pem;
+        #Reverse Proxy ไปที่ images backend3 PORT 8080
+         location /about  {
+            proxy_pass http://backend10:8080;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+        #Reverse Proxy ไปที่ images backend3 PORT 8080
+         location /service1 {
+            proxy_pass http://backend1:8080;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+        # #Reverse Proxy ไปที่ images backend2 PORT 8080
+         location /service2 {
+            proxy_pass http://backend2:8080;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+
+        location /service4 {
+            proxy_pass http://backend4:8080;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+
+        location /static {
+            proxy_pass http://backend4:8080;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+        location /static2 {
+            proxy_pass http://backend10:8080;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+
+        # Load Balance  แบบคนละ Service  คือ  backendup = ให้เลือกว่าจะไป   backend1 PORT8080 หรือ backend3 PORT8080
+        location /multi_service {
+            proxy_pass http://multi_service;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+    }
+    # server {
+    # listen 443 ssl;
+    # server_name ohm.signalschool.co;
+    # # ระบุไฟล์ใบรับรอง SSL และคีย์
+    # ssl_certificate  /etc/ssl/public.pem;
+    # ssl_certificate_key  /etc/ssl/private2.pem;
+    # location / {
+    # }
+}
+}
+
+# # server {
+# #     listen 80;
+# #     server_name ohm.signalschool.co;
+
+# #     # บังคับให้ใช้ HTTPS
+# #     return 301 https://$host$request_uri;
+# # }
+
+# server {
+#     listen 443 ssl;
+#     server_name ohm.signalschool.co;
+#     # ระบุไฟล์ใบรับรอง SSL และคีย์
+#     ssl_certificate  /etc/ssl/fullchain.pem;
+#     ssl_certificate_key  /etc/ssl/privkey.pem;
+#     location / {
+#     }
+
+# }
